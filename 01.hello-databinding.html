@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app">
+    <h1>{{ message }}</h1>
+
+    <!-- Binding between the input and the model -->
+     <input v-model="message" />
+
+     <!-- Output the data object, filter through JSON filter -->
+     <pre>
+       {{ $data | json }}
+     </pre>
+  </div>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js" type="text/javascript" charset="utf-8"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    "use strict";
+
+    var data = {
+      message: 'Hello World'
+    };
+
+    new Vue({
+        el: '#app',
+        data: data
+    });
+  </script>
+</body>
+</html>

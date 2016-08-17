@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Document</title>
+  <style type="text/css" media="all">
+    body {font-family: -apple-system-, BlinkMacSystemFont,  sans-serif;}
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <!-- .prevent is event modifer -->
+    <!-- v-on:.prevent - prevents default -->
+    <!-- v-on:.stop - stops propogation -->
+    <!-- v.on: can be replaced with a shorthand @ -->
+    <!-- <form action="done.html" v-on:submit.prevent="handleIt"> -->
+    <form action="done.html" @submit.prevent="handleIt">
+      <button type="submit" @click="doSomething">Submit Me!</button>
+    </form>
+
+    <!-- can be a basic inlined expression instead of a method -->
+    <!-- <button type="submit" @click="this.count += 1"> -->
+    <button type="submit" @click="updateCount">
+      Increment Counter: {{ count }}
+    </button>
+
+     <pre>{{ $data | json }}</pre>
+  </div>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js" type="text/javascript" charset="utf-8"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    "use strict";
+
+    new Vue({
+        el: '#app',
+        // Methods object to house all of the Vue methods
+        methods: {
+          handleIt: function() {
+            alert('Handled');
+          },
+          doSomething: function() {
+            console.log('clicked button');
+          },
+          updateCount: function () {
+            this.count += 1;
+          }
+        },
+        data: {
+          count: 0
+        }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Document</title>
+  <style type="text/css" media="all">
+    body {font-family: -apple-system-, BlinkMacSystemFont,  sans-serif;}
+  </style>
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- Custom compments create cutom HTML tags -->
+    <my-heading></my-heading>
+
+    <!-- Reparing functionality with components -->
+    <!-- Components accept the heading property -->
+    <my-counter heading="Likes"></my-counter>
+    <my-counter heading="Dislikes"></my-counter>
+
+    <my-component></my-component>
+
+     <pre>{{ $data | json }}</pre>
+  </div>
+
+  <!-- Define a template for the my-counter component -->
+  <template id="counter-template">
+    <h3>{{ heading }}</h3>
+    <button @click="count += 1">Increment {{ count }}</button>
+  </template>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js" type="text/javascript" charset="utf-8"></script>
+
+  <script type="text/javascript" charset="utf-8">
+    "use strict";
+
+    Vue.component('my-heading', {
+      template: '<h1>Hello World</h1>'
+    });
+
+    Vue.component('my-counter', {
+      template: '#counter-template',
+      // Defining the properties that the component will accept
+      props: ['heading'],
+      // Unique count data for each instance of my-coutner
+      data: function() {
+        return { count: 0 };
+      }
+    });
+
+    // Root Vue instance
+    new Vue({
+        el: '#app',
+        // Components can be defined directly on the Vue object
+        components: {
+          'my-component': {
+            template: '<div><em>My Component</em></div>'
+          }
+        }
+    });
+  </script>
+</body>
+</html>
