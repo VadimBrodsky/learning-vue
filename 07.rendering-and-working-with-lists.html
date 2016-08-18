@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>Document</title>
+  <style type="text/css" media="all">
+    body {font-family: -apple-system-, BlinkMacSystemFont,  sans-serif;}
+    .completed {text-decoration: line-through;}
+  </style>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+  <div id="app">
+    <ul>
+      <!-- ``:class` - bind the class attribute to the passed thing  -->
+      <!-- `:class="'thing'"` - to refer to the string `'thing'` -->
+      <!-- `:class="['thing', 'another', 'third']"` all will be applied -->
+      <!-- `:class="{ 'className': condition }"` pass object with conditional -->
+      <li :class="{ 'completed': task.completed }"
+          v-for="task in tasks"
+          @click="toggleCompletedFor(task)">
+        {{ task.body }}
+      </li>
+    </ul>
+     <pre>{{ $data | json }}</pre>
+  </div>
+
+  <script type="text/javascript" charset="utf-8">
+    "use strict";
+
+    // Root Vue instance
+    new Vue({
+        el: '#app',
+        data: {
+          tasks: [
+            { body: 'Go to the store', completed: false },
+            { body: 'Go to the bank', completed: false },
+            { body: 'Go to the doctor', completed: true }
+          ]
+        },
+        methods: {
+          toggleCompletedFor: function(task) {
+            task.completed = ! task.completed;
+          }
+        }
+    });
+  </script>
+</body>
+</html>
